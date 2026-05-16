@@ -1,0 +1,66 @@
+<div class="container">
+  <h1>📋 Directorio de Usuarios</h1>
+  <p class="subtitulo">Datos consumidos desde JSONPlaceholder API</p>
+
+  <!-- Estado: Cargando -->
+  <div *ngIf="cargando()" class="estado-cargando">
+    ⏳ Cargando usuarios...
+  </div>
+
+  <!-- Estado: Error -->
+  <div *ngIf="error()" class="estado-error">
+    ❌ {{ error() }}
+  </div>
+
+  <!-- Estado: Datos cargados -->
+  <div *ngIf="!cargando() && !error()">
+    <p class="contador">Total de usuarios: <strong>{{ usuarios().length }}</strong></p>
+    <br>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Teléfono</th>
+          <th>Empresa</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let usuario of usuarios()">
+          <td>{{ usuario.id }}</td>
+          <td>{{ usuario.name }}</td>
+          <td>@{{ usuario.username }}</td>
+          <td>
+            <a [href]="'mailto:' + usuario.email">{{ usuario.email }}</a>
+          </td>
+          <td>{{ usuario.phone }}</td>
+          <td>{{ usuario.company.name }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>UserId</th>
+          <th>Título</th>
+          <th>Descripción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let post of post()">
+          <td>{{ post.id }}</td>
+          <td>{{ post.userId }}</td>
+          <td>@{{ post.title }}</td>
+          <td>@{{ post.body }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
